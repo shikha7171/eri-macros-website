@@ -1,8 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Fraunces, Inter, Geist_Mono } from 'next/font/google'
+import { Fraunces, Inter, Geist_Mono, Manrope } from 'next/font/google'
 import './globals.css'
-import { Manrope } from 'next/font/google'
 import { SiteNav } from '@/components/site-nav'
 import { SiteFooter } from '@/components/site-footer'
 
@@ -11,6 +10,7 @@ const manrope = Manrope({
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-manrope',
 })
+
 const fraunces = Fraunces({
   variable: '--font-fraunces',
   subsets: ['latin'],
@@ -29,10 +29,18 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Eri Macros — Redefining Protein from Nature',
+  metadataBase: new URL('https://erimacros.com'),
+
+  title: {
+    default: 'Eri Macros — Redefining Protein from Nature',
+    template: '%s | Eri Macros',
+  },
+
   description:
-    'Eri Macros turns the Eri silkworm, native to Northeast India, into a sustainable source of natural protein — supporting rural communities and a circular way of living.',
-  generator: 'v0.app',
+    'Eri Macros turns the Eri silkworm, native to Northeast India, into a sustainable source of natural protein while supporting rural communities and circular food systems.',
+
+  applicationName: 'Eri Macros',
+
   keywords: [
     'Eri Macros',
     'Eri silkworm protein',
@@ -41,6 +49,54 @@ export const metadata: Metadata = {
     'Northeast India',
     'circular food',
   ],
+
+  alternates: {
+    canonical: '/',
+  },
+
+  icons: {
+    icon: [
+      {
+        url: '/icon.svg',
+        type: 'image/svg+xml',
+      },
+      {
+        url: '/icon-dark-32x32.png',
+        type: 'image/png',
+        sizes: '32x32',
+      },
+    ],
+    shortcut: '/icon-dark-32x32.png',
+    apple: '/apple-icon.png',
+  },
+
+  openGraph: {
+    type: 'website',
+    url: 'https://erimacros.com',
+    siteName: 'Eri Macros',
+    title: 'Eri Macros — Redefining Protein from Nature',
+    description:
+      'A sustainable source of natural protein from the Eri silkworm, rooted in Northeast India.',
+    images: [
+      {
+        url: '/logo-main.png',
+        alt: 'Eri Macros',
+      },
+    ],
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Eri Macros — Redefining Protein from Nature',
+    description:
+      'A sustainable source of natural protein from the Eri silkworm, rooted in Northeast India.',
+    images: ['/logo-main.png'],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export const viewport: Viewport = {
